@@ -10,7 +10,7 @@ app = Flask(__name__)
 # route to handle the landing page of a website.
 @app.route('/')
 def start_here():
-    return "Hi! This is the home page."
+    return "Hi! Ok, you need to click <a href='/hello'>here</a>, trust me."
 
 # route to display a simple web page
 @app.route('/hello')
@@ -39,11 +39,17 @@ def show_game_form():
 
 @app.route('/madlib')
 def show_madlib():
+    VERBS = ['fly','eat','learn','jump']
+    verb = request.args.getlist('verb')
+    verb1 = choice(verb)
+    verb2 = choice(verb)
+    verb3 = choice(verb)
+    verb4 = choice(verb)
     color = request.args.get('color')
     noun = request.args.get('noun')
     personmad = request.args.get('personmad')
     adjective = request.args.get('adjective')
-    return render_template('madlib.html', color=color, noun=noun, personmad=personmad, adjective=adjective)
+    return render_template('madlib.html', color=color, noun=noun, personmad=personmad, adjective=adjective, verb1=verb1, verb2=verb2, verb3=verb3, verb4=verb4)
 
 
 
